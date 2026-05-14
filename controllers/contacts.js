@@ -21,7 +21,7 @@ const createData = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        favouriteColor: req.body.favouriteColor,
+        favoriteColor: req.body.favoriteColor,
         birthday: req.body.birthday
     };
     const response = await mongodb.getDb().db('CSE341').collection('contacts').insertOne(contact);
@@ -38,7 +38,7 @@ const updateData = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        favouriteColor: req.body.favouriteColor,
+        favoriteColor: req.body.favoriteColor,
         birthday: req.body.birthday
     };
     const response = await mongodb.getDb().db('CSE341').collection('contacts').replaceOne({ _id: contactId }, contact);
@@ -51,7 +51,7 @@ const updateData = async (req, res) => {
 
 const deleteData = async (req, res) => {
     const contactId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db('CSE341').collection('contacts').remove({ _id: contactId }, true);
+    const response = await mongodb.getDb().db('CSE341').collection('contacts').deleteOne({ _id: contactId });
     if (response.deletedCount > 0) {
         res.status(204).send();
     } else {

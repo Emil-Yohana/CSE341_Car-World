@@ -9,9 +9,10 @@ const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
 
 app.use(cors());
+app.use(bodyParser.json());
 app.use('/professional', professionalRoutes);
 app.use('/contacts', contactsRoutes);
-app.use(bodyParser.json());
+
 
 mongodb.initDb((err, mongodb) => {
     if (err) {
