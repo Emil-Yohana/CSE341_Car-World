@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const port = 8080;
 const professionalRoutes = require('./routes/professional');
 const contactsRoutes = require('./routes/contacts');
+const swaggerRoutes = require('./routes/swagger');
 const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
 
@@ -12,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/professional', professionalRoutes);
 app.use('/contacts', contactsRoutes);
-
+app.use('/', swaggerRoutes);
 
 mongodb.initDb((err, mongodb) => {
     if (err) {
