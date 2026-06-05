@@ -36,7 +36,7 @@ const getData = async (req, res) => {
    ============================================================ */
 // In this section, I am adding the POST endpoint.
 // This function creates a new brand using the data sent in the request body.
-const createBrand = async (req, res) => {
+const createData = async (req, res) => {
     try {
         const brand = req.body;
 
@@ -61,7 +61,7 @@ const createBrand = async (req, res) => {
    ============================================================ */
 // In this section, I am adding the PUT endpoint.
 // This function updates an existing brand by replacing it with the new data.
-const updateBrand = async (req, res) => {
+const updateData = async (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
         return res.status(400).json('Must use a valid brand id to update a brand.');
     }
@@ -89,6 +89,6 @@ const updateBrand = async (req, res) => {
 module.exports = {
     getAllData,
     getData,
-    createBrand,
-    updateBrand
+    createData,
+    updateData
 };
