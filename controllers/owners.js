@@ -41,7 +41,13 @@ const getData = async (req, res) => {
 const createData = async (req, res) => {
 //#swagger.tags = ['Owners']
     try {
-        const owner = req.body;
+        const owner = {
+            fullName: req.body.fullName,
+            email: req.body.email,
+            phone: req.body.phone,
+            address: req.body.address,
+            ownedCars: req.body.ownedCars
+        }
 
         const response = await mongodb
             .getDb()
@@ -71,7 +77,14 @@ const updateData = async (req, res) => {
     }
 
     const ownerId = new ObjectId(req.params.id);
-    const owner = req.body;
+
+    const owner = {
+        fullName: req.body.fullName,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        ownedCars: req.body.ownedCars
+    }
 
     try {
         const response = await mongodb
