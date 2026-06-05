@@ -1,15 +1,16 @@
 const validator = require('../helpers/validate');
 
+// Hi team, Analina here. I updated the validation rules so they match the actual
+// fields in our database.
+
+/* ---------------------- BRANDS COLLECTION ---------------------- */
 const brand = (req, res, next) => {
     const validationRule = {
-        firstName: 'required|string',
-        lastName: 'required|string',
-        email: 'required|email',
-        favoriteColor: 'required|string',
-        birthday: 'required|string',
-        address: 'required|string',
-        city: 'required|string',
-        postCode: 'required|string'
+        name: 'required|string',
+        country: 'required|string',
+        foundedYear: 'required|numeric',
+        headquarters: 'required|string',
+        popularModels: 'required|string'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
@@ -24,17 +25,18 @@ const brand = (req, res, next) => {
     });
 };
 
+/* ---------------------- CARS COLLECTION ---------------------- */
 const cars = (req, res, next) => {
     const validationRule = {
-        productId: 'required|string',
-        productName: 'required|string',
-        category: 'required|string',
-        brand: 'required|string',
+        make: 'required|string',
+        model: 'required|string',
+        year: 'required|numeric',
         price: 'required|numeric',
-        currency: 'required|string',
-        stock: 'required|integer',
-        sku: 'required|string',
-        rating: 'required|numeric'
+        mileage: 'required|numeric',
+        color: 'required|string',
+        brand: 'required|string',
+        dealer: 'required|string',
+        owner: 'string'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
@@ -49,17 +51,15 @@ const cars = (req, res, next) => {
     });
 };
 
+/* ---------------------- DEALERS COLLECTION ---------------------- */
 const dealers = (req, res, next) => {
     const validationRule = {
-        productId: 'required|string',
-        productName: 'required|string',
-        category: 'required|string',
-        brand: 'required|string',
-        price: 'required|numeric',
-        currency: 'required|string',
-        stock: 'required|integer',
-        sku: 'required|string',
-        rating: 'required|numeric'
+        name: 'required|string',
+        location: 'required|string',
+        email: 'required|email',
+        phone: 'required|string',
+        inventoryCount: 'required|numeric',
+        brandsCarried: 'required|string'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
@@ -74,17 +74,14 @@ const dealers = (req, res, next) => {
     });
 };
 
+/* ---------------------- OWNERS COLLECTION ---------------------- */
 const owners = (req, res, next) => {
     const validationRule = {
-        productId: 'required|string',
-        productName: 'required|string',
-        category: 'required|string',
-        brand: 'required|string',
-        price: 'required|numeric',
-        currency: 'required|string',
-        stock: 'required|integer',
-        sku: 'required|string',
-        rating: 'required|numeric'
+        fullName: 'required|string',
+        email: 'required|email',
+        phone: 'required|string',
+        address: 'required|string',
+        ownedCars: 'required|string'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
