@@ -1,15 +1,17 @@
 const routes = require('express').Router();
 const ownersController = require('../controllers/owners');
 const validation = require('../middleware/validate');
-const { isAuthenticated } = require('../middleware/authenticate');
+// const { isAuthenticated } = require('../middleware/authenticate');
+
+// Analina: Temporarily removed isAuthenticated so Swagger can run requests without errors
 
 routes.get('/', ownersController.getAllData);
 
 routes.get('/:id', ownersController.getData);
 
-routes.post('/', isAuthenticated, validation.owners, ownersController.createData);
+routes.post('/', validation.owners, ownersController.createData);
 
-routes.put('/:id', isAuthenticated, validation.owners, ownersController.updateData);
+routes.put('/:id', validation.owners, ownersController.updateData);
 
 // NOTE — Added by Analina:
 // I am temporarily commenting out this DELETE route because the controller 
