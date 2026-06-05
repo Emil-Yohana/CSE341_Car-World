@@ -6,7 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
    ============================================================ */
 const getAllData = async (req, res) => {
     try {
-        const lists = await mongodb.getDb().db('CSE341').collection('owners').find().toArray();
+        const lists = await mongodb.getDb().db('cse341').collection('owners').find().toArray();
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists);
     } catch (err) {
@@ -23,7 +23,7 @@ const getData = async (req, res) => {
     }
     const ownerId = new ObjectId(req.params.id);
     try {
-        const result = await mongodb.getDb().db('CSE341').collection('owners').find({ _id: ownerId }).toArray();
+        const result = await mongodb.getDb().db('cse341').collection('owners').find({ _id: ownerId }).toArray();
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(result[0]);
     } catch (err) {
@@ -42,7 +42,7 @@ const createData = async (req, res) => {
 
         const response = await mongodb
             .getDb()
-            .db('CSE341')
+            .db('cse341')
             .collection('owners')
             .insertOne(owner);
 
@@ -72,7 +72,7 @@ const updateData = async (req, res) => {
     try {
         const response = await mongodb
             .getDb()
-            .db('CSE341')
+            .db('cse341')
             .collection('owners')
             .replaceOne({ _id: ownerId }, owner);
 
