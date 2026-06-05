@@ -5,6 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
    GET ALL BRANDS — Added by Emil
    ============================================================ */
 const getAllData = async (req, res) => {
+//#swagger.tags = ['Brands']
     try {
         const lists = await mongodb.getDb().db('cse341').collection('brands').find().toArray();
         res.setHeader('Content-Type', 'application/json');
@@ -18,6 +19,7 @@ const getAllData = async (req, res) => {
    GET ONE BRAND — Added by Emil
    ============================================================ */
 const getData = async (req, res) => {
+//#swagger.tags = ['Brands']
     if (!ObjectId.isValid(req.params.id)) {
         return res.status(400).json('Must use a valid brand id to find a brand.');
     }
@@ -37,6 +39,7 @@ const getData = async (req, res) => {
 // In this section, I am adding the POST endpoint.
 // This function creates a new brand using the data sent in the request body.
 const createData = async (req, res) => {
+//#swagger.tags = ['Brands']
     try {
         const brand = req.body;
 
@@ -62,6 +65,7 @@ const createData = async (req, res) => {
 // In this section, I am adding the PUT endpoint.
 // This function updates an existing brand by replacing it with the new data.
 const updateData = async (req, res) => {
+//#swagger.tags = ['Brands']
     if (!ObjectId.isValid(req.params.id)) {
         return res.status(400).json('Must use a valid brand id to update a brand.');
     }
