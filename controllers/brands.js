@@ -41,7 +41,13 @@ const getData = async (req, res) => {
 const createData = async (req, res) => {
 //#swagger.tags = ['Brands']
     try {
-        const brand = req.body;
+        const brand = {
+            name: req.body.name,
+            country: req.body.country,
+            foundedYear: req.body.foundedYear,
+            headquarters: req.body.headquarters,
+            popularModels: req.body.popularModels
+        }
 
         const response = await mongodb
             .getDb()
@@ -71,7 +77,14 @@ const updateData = async (req, res) => {
     }
 
     const brandId = new ObjectId(req.params.id);
-    const brand = req.body;
+
+    const brand = {
+        name: req.body.name,
+        country: req.body.country,
+        foundedYear: req.body.foundedYear,
+        headquarters: req.body.headquarters,
+        popularModels: req.body.popularModels
+    }
 
     try {
         const response = await mongodb
