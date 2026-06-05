@@ -11,6 +11,11 @@ routes.post('/', isAuthenticated, validation.brand, brandsController.createData)
 
 routes.put('/:id', isAuthenticated, validation.brand, brandsController.updateData);
 
-routes.delete('/:id', isAuthenticated, brandsController.deleteData);
+// NOTE — Added by Analina:
+// I am temporarily commenting out this DELETE route because the controller 
+// function is not implemented yet. Once the deleteData function is created, 
+// we can safely uncomment this route.
+
+// routes.delete('/:id', isAuthenticated, brandsController.deleteData);
 
 module.exports = routes;
