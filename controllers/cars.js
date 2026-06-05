@@ -1,6 +1,9 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
+/* ============================================================
+   GET ALL CARS — Added by Emil
+   ============================================================ */
 const getAllData = async (req, res) => {
     try {
         const lists = await mongodb.getDb().db('CSE341').collection('cars').find().toArray();
@@ -11,6 +14,9 @@ const getAllData = async (req, res) => {
     }
 };
 
+/* ============================================================
+   GET ONE CAR — Added by Emil
+   ============================================================ */
 const getData = async (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
         return res.status(400).json('Must use a valid car id to find a car.');

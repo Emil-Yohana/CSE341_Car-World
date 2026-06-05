@@ -1,6 +1,9 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
+/* ============================================================
+   GET ALL DEALERS — Added by Emil
+   ============================================================ */
 const getAllData = async (req, res) => {
     try {
         const lists = await mongodb.getDb().db('CSE341').collection('dealers').find().toArray();
@@ -11,6 +14,9 @@ const getAllData = async (req, res) => {
     }
 };
 
+/* ============================================================
+   GET ONE DEALER — Added by Emil
+   ============================================================ */
 const getData = async (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
         return res.status(400).json('Must use a valid dealer id to find a dealer.');
