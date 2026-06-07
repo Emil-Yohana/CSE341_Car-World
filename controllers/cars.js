@@ -111,9 +111,39 @@ const updateData = async (req, res) => {
     }
 };
 
+/* ============================================================
+   DELETE CAR — Added by Analina
+   ============================================================ */
+const deleteData = async (req, res) => {
+    //#swagger.tags = ['Cars']
+    try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).json('Must use a valid car id to delete a car.');
+        }
+
+        const carId = new ObjectId(req.params.id);
+
+        const response = await mongodb
+            .getDb()
+            .db('cse341')
+            .collection('cars')
+            .deleteOne({ _id: carId });
+
+        if (response.deletedCount === 0) {
+            return res.status(404).json({ message: 'Car not found.' });
+        }
+
+        return res.status(204).send();
+
+    } catch (err) {
+        res.status(500).json({ message: err });
+    }
+};
+
 module.exports = {
     getAllData,
     getData,
     createData,
-    updateData
+    updateData,
+    deleteData
 };
