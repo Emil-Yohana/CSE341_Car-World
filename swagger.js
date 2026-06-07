@@ -7,8 +7,8 @@ const doc = {
         title: 'Car World API',
         description: 'API documentation for the Car World project'
     },
-    host: 'localhost:3000',
-    schemes: ['http']
+    host: 'cse341-car-world.onrender.com',
+    schemes: ['https']
 };
 
 const outputFile = './swagger.json';

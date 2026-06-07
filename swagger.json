@@ -5,10 +5,10 @@
     "description": "API documentation for the Car World project",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-car-world.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/cars/": {
