@@ -103,9 +103,39 @@ const updateData = async (req, res) => {
     }
 };
 
+/* ============================================================
+   DELETE OWNER — Added by Analina
+   ============================================================ */
+const deleteData = async (req, res) => {
+    //#swagger.tags = ['Owners']
+    try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).json('Must use a valid owner id to delete an owner.');
+        }
+
+        const ownerId = new ObjectId(req.params.id);
+
+        const response = await mongodb
+            .getDb()
+            .db('cse341')
+            .collection('owners')
+            .deleteOne({ _id: ownerId });
+
+        if (response.deletedCount === 0) {
+            return res.status(404).json({ message: 'Owner not found.' });
+        }
+
+        return res.status(204).send();
+
+    } catch (err) {
+        res.status(500).json({ message: err });
+    }
+};
+
 module.exports = {
     getAllData,
     getData,
     createData,
-    updateData
+    updateData,
+    deleteData
 };

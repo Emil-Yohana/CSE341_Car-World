@@ -13,11 +13,6 @@ routes.post('/', validation.owners, ownersController.createData);
 
 routes.put('/:id', validation.owners, ownersController.updateData);
 
-// NOTE — Added by Analina:
-// I am temporarily commenting out this DELETE route because the controller 
-// function is not implemented yet. Once the deleteData function is created, 
-// we can safely uncomment this route.
-
-//routes.delete('/:id', isAuthenticated, ownersController.deleteData);
+routes.delete('/:id', ownersController.deleteData);
 
 module.exports = routes;

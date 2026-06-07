@@ -105,9 +105,39 @@ const updateData = async (req, res) => {
     }
 };
 
+/* ============================================================
+   DELETE DEALER — Added by Analina
+   ============================================================ */
+const deleteData = async (req, res) => {
+    //#swagger.tags = ['Dealers']
+    try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).json('Must use a valid dealer id to delete a dealer.');
+        }
+
+        const dealerId = new ObjectId(req.params.id);
+
+        const response = await mongodb
+            .getDb()
+            .db('cse341')
+            .collection('dealers')
+            .deleteOne({ _id: dealerId });
+
+        if (response.deletedCount === 0) {
+            return res.status(404).json({ message: 'Dealer not found.' });
+        }
+
+        return res.status(204).send();
+
+    } catch (err) {
+        res.status(500).json({ message: err });
+    }
+};
+
 module.exports = {
     getAllData,
     getData,
     createData,
-    updateData
+    updateData,
+    deleteData
 };
