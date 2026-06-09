@@ -1,18 +1,16 @@
 const routes = require('express').Router();
 const brandsController = require('../controllers/brands');
 const validation = require('../middleware/validate');
-// const { isAuthenticated } = require('../middleware/authenticate');
-
-// Analina: Temporarily removed isAuthenticated so Swagger can run requests without errors
+const { isAuthenticated } = require('../middleware/authenticate');
 
 routes.get('/', brandsController.getAllData);
 
 routes.get('/:id', brandsController.getData);
 
-routes.post('/', validation.brand, brandsController.createData);
+routes.post('/', isAuthenticated, validation.brand, brandsController.createData);
 
-routes.put('/:id', validation.brand, brandsController.updateData);
+routes.put('/:id', isAuthenticated, validation.brand, brandsController.updateData);
 
-routes.delete('/:id', brandsController.deleteData);
+routes.delete('/:id', isAuthenticated, brandsController.deleteData);
 
 module.exports = routes;
